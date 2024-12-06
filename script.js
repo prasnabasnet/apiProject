@@ -10,20 +10,19 @@ async function getData(){
 
 
 $(document).ready( function () {
+    const table = $('#myTable').DataTable({
+        columnDefs: [{ width: '15%', targets: 0 }]
+    });
+
     getData().then(data => {
+        table.clear();
         data.results.forEach((element,index) => {
-            let tr = $("<tr></tr>");
-    
-            let tdGender = $("<td></td>").text(element.gender)
-            tr.append(tdGender)
-    
-            let tdEmail = $("<td></td>").text(element.email)
-            tr.append(tdEmail)
-    
-            $('#myTable tbody').append(tr)
+            table.row.add([
+                index+1,
+                element.email,
+                element.gender
+            ]).draw()
         });
     })
     .catch(err => console.error(err))
-
-    $('#myTable').DataTable();
 } );
