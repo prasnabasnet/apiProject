@@ -23,9 +23,9 @@ input{
     cursor: pointer;
 }   
 #myTable_wrapper{
+    background-color: #fff;
     margin: 30px;
     padding: 5px 10px;
-    background-color: #fff;
-    height: 50px !important;
+    height: calc(100vh - 150px);
     overflow-y: auto;
 }

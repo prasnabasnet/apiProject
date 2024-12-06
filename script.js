@@ -6,23 +6,24 @@ async function getData(){
     return data;
 }
 
-getData().then(data => {
-    data.results.forEach((element,index) => {
-        console.log(element)
 
-        let td = $("<td></td>") 
-        td.append($("<td></td>")).text(element.email)
-        td.append($("<td></td>")).text(element.gender)
-
-        let tr = $("<tr></tr>")
-        tr.append(td)
-
-        $('#myTable tbody').append(tr)
-    });
-})
-.catch(err => console.error(err))
 
 
 $(document).ready( function () {
+    getData().then(data => {
+        data.results.forEach((element,index) => {
+            let tr = $("<tr></tr>");
+    
+            let tdGender = $("<td></td>").text(element.gender)
+            tr.append(tdGender)
+    
+            let tdEmail = $("<td></td>").text(element.email)
+            tr.append(tdEmail)
+    
+            $('#myTable tbody').append(tr)
+        });
+    })
+    .catch(err => console.error(err))
+
     $('#myTable').DataTable();
 } );
